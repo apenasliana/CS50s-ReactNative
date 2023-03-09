@@ -16,6 +16,10 @@ export default class App extends React.Component {
     contacts: contacts,
   }
 
+  addContact = newContact => {
+    this.setState(prevState => ({showForm: false, contacts: [...prevState.contacts, newContact]}))
+  }
+
   toggleForm = () =>{
     this.setState(prevState => ({showForm: !prevState.showForm}))
   }
@@ -32,7 +36,7 @@ export default class App extends React.Component {
   render() {
     if(this.state.showForm) return (
     <View>
-      <AddContactForm/> 
+      <AddContactForm onSubmit={this.addContact}/> 
       <Button title='Cancel' onPress={this.toggleForm}/> 
     </View>
     )
